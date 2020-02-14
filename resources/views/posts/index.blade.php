@@ -8,7 +8,26 @@
     <div class="card card-default">
         <div class="card-header">Posts</div>
         <div class="card-body">
+            <table class="table">
+                <thead>
+                    <th>Image</th>
+                    <th>Title</th>
+                </thead>
+                <tbody>
+                    @foreach($posts as $post)
+                        <tr>
+                            <td>
+                                <img src="{{ asset($post->image) }}" width="120" height="60" alt="">
+                            </td>
+                            <td>
+                                {{ $post->title }}
+                            </td>
+                        </tr>
 
+                     @endforeach
+                    <tr></tr>
+                </tbody>
+            </table>
         </div>
     </div>
 
