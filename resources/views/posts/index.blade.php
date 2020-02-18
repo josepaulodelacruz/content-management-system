@@ -22,15 +22,18 @@
                             <td>
                                 {{ $post->title }}
                             </td>
-
+                            @if(!$post->trashed())
                             <td>
                                 <a href="" class="btn btn-info btn-sm">Edit</a>
                             </td>
+                            @endif
                             <td>
                                 <form method="POST" action="{{ route('posts.destroy', $post->id) }}">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">Trash</button>
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        {{ $post->trashed() ? 'Delete' : 'Trashed' }}
+                                    </button>
 
                                 </form>
                             </td>
