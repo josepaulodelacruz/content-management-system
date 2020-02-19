@@ -12,6 +12,9 @@
                 <thead>
                     <th>Image</th>
                     <th>Title</th>
+                    <th>Category</th>
+                    <th></th>
+                    <th></th>
                 </thead>
                 <tbody>
                     @foreach($posts as $post)
@@ -22,10 +25,23 @@
                             <td>
                                 {{ $post->title }}
                             </td>
-                            @if(!$post->trashed())
                             <td>
-                                <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-info btn-sm">Edit</a>
+                                <a href="{{ route('categories.edit', $post->category->id) }}">
+                                    {{ $post->category->name }}
+                                </a>
                             </td>
+                            @if($post->trashed())
+                            <td>
+                                <form action="{{ route('restore-posts', $post->id) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="submit" class="btn btn-info btn-sm">Restore</button>
+                                </form>
+                            </td>
+                            @else
+                                <td>
+                                    <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-info btn-sm">Edit</a>
+                                </td>
                             @endif
                             <td>
                                 <form method="POST" action="{{ route('posts.destroy', $post->id) }}">
