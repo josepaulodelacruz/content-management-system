@@ -7,6 +7,8 @@
             {{ isset($post) ? 'Edit post' : 'Create Post' }}
         </div>
 
+        @include('patials.error')
+
         <div class="card-body">
             <form action="{{ isset($post) ? route('posts.update', $post->id) : route('posts.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf

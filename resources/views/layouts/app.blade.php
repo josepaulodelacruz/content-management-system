@@ -105,6 +105,10 @@
                                 </li>
 
                                 <li class="list-group-item">
+                                    <a href="{{ route('tags.index') }}">Tags</a>
+                                </li>
+
+                                <li class="list-group-item">
                                     <a href="{{ route('categories.index') }}">Categories</a>
                                 </li>
                             </ul>
